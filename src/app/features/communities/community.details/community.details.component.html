@@ -1,0 +1,98 @@
+<div class="box-border card card-box d-flex flex-row w-100 rounded-4 shadow-lg mb-5 hov" style="">
+    <div class="col-2">
+        <div class="h-100" *ngIf="community.urlImage">
+            <img class="d-none d-sm-block rounded-start-4 shadow-lg community-img" [src]="community.urlImage" alt="Profile Picture">
+        </div>
+        <div *ngIf="!(community.urlImage)">
+            <div class="w-9 col-2 justify-content-center rounded-full">
+                <img class="d-none d-sm-block rounded-circle community-img" src="assets/images/defaultPhotoProfile.jpg" alt="defaultPhotoProfile"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-10 ms-4 d-flex align-items-center">
+        <div class="card-body d-flex flex-column align-content-between">
+            <h5 class="community-text text-start mb-2">{{community.name}}</h5>
+            <div class="d-flex flex-row justify-content-between gap-3">
+                <div class="d-flex flex-row gap-2">
+                    <div class="d-flex flex-row">
+                        <p class="card-text my-auto">Already inside: </p>
+                        <p class="paragraph-text">{{community.usersCommunity.length}}</p>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <p class="card-text my-auto">Posts published: </p>
+                        <p class="paragraph-text">{{postsOfCommunity.length}}</p>
+                    </div>
+                </div>
+                <div class="me-5">
+                    <div class="row"></div>
+                    <button
+                            *ngIf="isSubscribedToCommunity(community.id)"
+                            class="col btn btn-success button-border py-2 px-3 ms-2 shadow-lg"
+                            (click)="onShowCommunity(community.id)"
+                    >
+                        view Community!
+                    </button>
+                    <button
+                            *ngIf="isSubscribedToCommunity(community.id)"
+                            class="col btn btn-outline-danger text-white button-border py-2 px-3 ms-2 shadow-lg"
+                            (click)="leaveModal.show()"
+                            data-toggle="leaveModal"
+                            data-target="#leaveModal"
+                            type="button"
+                    >
+                        leave Community!
+                    </button>
+                    <!-- Button trigger modal -->
+                    <button
+                            (click)="joinModal.show()"
+                            data-toggle="joinModal"
+                            data-target="#joinModal"
+                            type="button"
+                            *ngIf="!isSubscribedToCommunity(community.id)"
+                            class="btn btn-primary button-border ms-3 py-2 px-3 shadow-lg"
+                    >
+                        Join Community!
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Join Modal -->
+<div class="modal fade" bsModal #joinModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="modal-center" aria-hidden="true">
+    <div class="mx-auto modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content d-flex flex-column gap-4">
+            <div class="modal-header p-3">
+                <h5 class="paragraph-text" id="exampleModalLongTitle">Join {{community.name}}!</h5>
+            </div>
+            <div class="modal-body p-1 mx-4">
+                <form [formGroup]="form">
+                    <label class="form-label mb-2">please chose your nickname:</label>
+                    <input type="text" formControlName="nickname" class="form-control py-2 pe-3">
+                </form>
+            </div>
+            <div class="modal-footer p-3 d-flex flex-row gap-3">
+                <button (click)="joinModal.hide()" type="button" class="btn btn-dark p-2" data-dismiss="modal">Close</button>
+                <button  [disabled]="form.invalid" type="submit" (click)="onUserCommunity(); joinModal.hide(); onShowCommunity(community.id)" class="btn btn-primary p-2">Subscribe to {{community.name}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Leave Modal -->
+<div class="modal fade" bsModal #leaveModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="modal-center" aria-hidden="true">
+    <div class="mx-auto modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content d-flex flex-column gap-4">
+            <div class="modal-header p-3">
+                <h5 class="paragraph-text" id="leaveModal">Are you sure to leave {{community.name}}?</h5>
+            </div>
+            <div class="modal-body d-flex flex-row justify-content-center gap-3">
+                <button (click)="leaveModal.hide()" type="button" class="btn btn-dark p-2" data-dismiss="modal">Close</button>
+                <button type="submit" (click)="onDeleteUserCommunity(community.id); leaveModal.hide();" class="btn btn-primary p-2">Unsubscribe to {{community.name}}</button>
+            </div>
+        </div>
+    </div>
+</div>

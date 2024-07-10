@@ -1,0 +1,28 @@
+@import "../../../assets/styles/palette";
+@import "../../../assets/styles/layout";
+
+.card-box {
+  width: 18rem;
+}
+
+.community-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-border {
+  border: none;
+}
+
+.community-text  {
+  font-size:30px;font-weight:900;text-decoration: none;
+}
+
+.paragraph-text  {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 25px;
+  font-weight: 900;
+}
+

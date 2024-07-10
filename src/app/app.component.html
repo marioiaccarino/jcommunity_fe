@@ -1,0 +1,23 @@
+<div *ngIf="!localUser" class="overflow-y-hidden" style="height:100vh">
+    <div class="z-1 w-100 d-none d-md-block">
+        <h1 class="text-start ms-4 mt-4 primary-title">jCommunity</h1>
+    </div>
+    <div class="container d-flex align-items-center justify-content-center flex-column overflow-y-hidden"  style="height:100vh;">
+        <app-login (localUser)="saveOnLocalStorage($event)"></app-login>
+    </div>
+</div>
+
+<div *ngIf="localUser">
+
+    <app-header
+            [loggedUser]="localUser"
+            (logoutUser)="deleteFromLocalStorage()"
+    ></app-header>
+
+    <div class="container-fluid px-4">
+        <div class="row">
+            <app-sidebar [loggedUser]="localUser" class="rounded-2 col-3 shadow-lg left-column box-border"></app-sidebar>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

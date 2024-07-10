@@ -1,0 +1,50 @@
+@import "../../../../assets/styles/palette";
+@import "../../../../assets/styles/layout";
+
+.card-box {
+  width: 18rem;
+  height: 140px;
+  box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+  transition: all .4s ease;
+}
+
+.card-box:hover {
+  color: white;
+  box-shadow: 8px 28px 50px rgba(39,44,49,.07), 1px 6px 12px rgba(39,44,49,.04);
+  transition: all .3s ease;
+  transform: translate3D(0,-1px,0) scale(1.03);
+}
+
+.box-border{
+  background-color: $custom_primary_background_color;
+  border: $custom_primary_box_border;
+}
+
+.box-border:hover {
+  background-color: $custom_primary_background_color;
+}
+
+.button-border {
+  border: $button_secondary_border;
+}
+
+.community-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-border {
+  border: none;
+}
+
+.community-text  {
+  font-size:30px;font-weight:900;text-decoration: none;
+}
+
+.paragraph-text  {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 25px;
+  font-weight: 900;
+}

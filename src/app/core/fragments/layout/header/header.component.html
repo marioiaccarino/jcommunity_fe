@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-lg sticky-top p-4 mb-4">
+  <div class="container-fluid d-flex align-items-start my-auto justify-content-between">
+    <div class="d-flex flex-row align-items-center justify-content-start gap-4">
+      <a class="nav-link primary-title" routerLink="home">jCommunity</a>
+      <div class="d-flex flex-row ml-4 gap-3">
+        <h6 class="pt-2 mt-1 d-none d-sm-block">Hi {{loggedUser.firstName}}!</h6>
+        <div *ngIf="loggedUser.urlImage ; else defaultImage">
+          <img class="d-none d-sm-block rounded-circle photo-profile" [src]="loggedUser.urlImage" alt="Profile Picture">
+        </div>
+        <ng-template #defaultImage>
+          <div class="w-9 rounded-full">
+            <img class="d-none d-sm-block rounded-circle photo-profile" src="assets/images/defaultPhotoProfile.jpg" alt="defaultPhotoProfile"/>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="my-auto">
+      <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav d-flex-flex-column gap-2 d-sm-flex-flex-row">
+          <a class="nav-link" aria-current="page" routerLink="home" routerLinkActive="active">Home</a>
+          <a class="nav-link" routerLink="communities" routerLinkActive="active">Communities</a>
+          <a class="nav-link">UIkit</a>
+          <a class="nav-link">Profile</a>
+          <a *ngIf="!storage.isEmpty()" (click)="onLogout()" routerLink="" class="nav-link">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,32 @@
+<div>
+  <div class="mt-3 mb-4 d-flex flex-row align-items-center gap-3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi bi-activity insight-svg" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+    </svg>
+    <h5 class="my-auto secondary-title">Insights</h5>
+  </div>
+    <div class="d-flex flex-row align-items-center justify-content-start">
+        <h6 class="nav-item">Subscribed communities  <strong class="fw-bolder">{{ usersCommunityOfLoggedUser.length}}</strong></h6>
+    </div>
+  <div *ngIf="usersCommunityOfLoggedUser">
+    <div class="col my-3" *ngFor="let userCommunity of usersCommunityOfLoggedUser">
+      <div *ngIf="userCommunity">
+        <div class="card me-4 d-flex flex-row justify-content-around align-items-center shadow-lg side-community-box" routerLink="communities">
+          <div class="d-flex align-items-center col-6 justify-content-center">
+            <h5 class="card-title">{{ userCommunity.subscribedCommunity.name }}</h5>
+          </div>
+          <div class="w-100 d-flex flex-row justify-content-center align-items-center">
+            <div class="col-6 d-flex justify-content-center" *ngIf="userCommunity.subscribedCommunity.urlImage ; else defaultImage">
+              <img class="d-none d-sm-block rounded-circle side-community-img" [src]="userCommunity.subscribedCommunity.urlImage" alt="Profile Picture">
+            </div>
+            <ng-template #defaultImage>
+              <div class="w-9 col-6 justify-content-center rounded-full">
+                <img class="d-none d-sm-block rounded-circle side-community-img" src="assets/images/defaultPhotoProfile.jpg" alt="defaultPhotoProfile"/>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

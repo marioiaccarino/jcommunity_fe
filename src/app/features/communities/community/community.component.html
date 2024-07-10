@@ -1,0 +1,12 @@
+<div class="container">
+    <alert *ngIf="justJoined" type="success" [dismissible]="true" (onClosed)="onClosed()">
+        <strong>{{alert.type}}</strong> {{ alert.message }}
+    </alert>
+    <div class="d-flex flex-rox justify-content-between mb-5">
+        <h1 class="primary-title">{{community.name}}</h1>
+        <button (click)="wantsToSeeAll.emit()" class="btn btn-primary p-2">Go back to the communities</button>
+    </div>
+    <div *ngFor="let post of postsFromTheSelectedCommunity" class="card shadow-lg" style="height: 330px; width:660px;">
+        <img [src]="post.urlImage" alt="post-photo" class="object-fit-cover w-100">
+    </div>
+</div>

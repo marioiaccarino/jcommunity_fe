@@ -1,0 +1,19 @@
+@import "../../../../../../src/assets/styles/palette";
+
+.card:hover {
+  transition: 0.1s;
+  background-color: $card_color;
+}
+
+.insight-svg {
+  height: 8%; width: 8%;
+}
+
+.side-community-box {
+  border: none;height: 70px;
+}
+
+.side-community-img {
+  width: 40px; height: 40px;
+  object-fit: cover;
+}

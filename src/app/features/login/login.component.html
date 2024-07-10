@@ -1,0 +1,57 @@
+<div>
+    <div *ngIf="alreadyRegistered">
+        <div class="row mb-5 align-items-center justify-content-center">
+            <div class="col py-2 mb-5 py-lg-3 d-flex justify-content-center">
+                <div  class="card shadow-lg d-flex align-items-center justify-content-center w-100 h-100 auth-box">
+                    <div class="card-body w-100 m-5 px-5 mt-0 d-flex flex-column align-items-center text-center h-full">
+                        <div class="mb-3">
+                            <h5 class="d-none d-md-block"><em>Join the family</em></h5>
+                        </div>
+                        <div *ngIf="invalidCredentials && loginAttempt" role="alert">
+                            <span class="bg-danger rounded-3 shadow-sm mx-2">Error! Invalid Credentials</span>
+                        </div>
+                        <div class="text-start items-center p-3">
+                            <form [formGroup]="form" class="d-flex flex-column w-100">
+
+                                <div class="mt-3">
+                                    <label class="form-label"><h6>Email address</h6></label>
+                                    <div class="d-flex flex-row">
+                                        <input type="email" formControlName="email" class="form-control py-2 pe-5" placeholder="name@example.com">
+                                        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="mx-2 bg-danger d-flex align-items-center">
+                                            required
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label class="form-label"><h6>Password</h6></label>
+                                    <div class="d-flex flex-row">
+                                        <input type="password" formControlName="password" class="form-control py-2 pe-5" placeholder="min 5 characters">
+                                        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="mx-2 bg-danger d-flex align-items-center">
+                                            required
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="container mt-5 align-items-center justify-items-center pt-2">
+                                    <div class="row text-center gap-3">
+                                        <div class="col">
+                                            <button class="btn btn-primary shadow-lg" [disabled]="form.invalid" type="submit" (click)="onLogin()">Login</button>
+                                        </div>
+                                        <div class="col">
+                                            <button class="btn btn-dark" (click)="wantsToRegister()">Register</button></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!alreadyRegistered">
+        <app-register (formRegister)="registerUser($event)" (wantsToLogin)="alreadyRegistered=true"></app-register>
+    </div>
+</div>
+

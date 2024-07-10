@@ -1,0 +1,25 @@
+@import "../../../assets/styles/palette";
+
+.community-posts-box {
+  background-color: #353b44;
+}
+
+.post-box {
+  width: 99%;
+}
+
+.btn-discover  {
+  width: 20%;
+  height: 40px;
+  background-color: $button_primary_background_color;
+  border: none;
+  border-radius: 5%;
+}
+
+.btn-discover:hover{
+  background-color: $button_primary_border;
+}
+
+.post-image {
+  object-fit: cover;
+}
